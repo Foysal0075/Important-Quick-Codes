@@ -59,8 +59,35 @@ Calendar cal = Calendar.getInstance();
 //get date
 
   Calendar cal = Calendar.getInstance(); 
-  
+
   int dayofyear = cal.get(Calendar.DAY_OF_YEAR);
   int year = cal.get(Calendar.YEAR);
   int dayofweek = cal.get(Calendar.DAY_OF_WEEK);
   int dayofmonth = cal.get(Calendar.DAY_OF_MONTH);
+
+
+// Camera Intent for taking and viewing image
+
+
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+
+
+       @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mPhotoData = encodeToBase64 (imageBitmap,Bitmap.CompressFormat.JPEG, 50);
+            System.out.println(mPhotoData);
+            mImageview.setImageBitmap(imageBitmap);
+        }
+    }
