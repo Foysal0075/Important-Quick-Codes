@@ -25,3 +25,42 @@
             }
         }
     }     
+
+//Date Picker
+
+  private Button mDatePicker;
+  mDatePicker = findViewById(R.id.mDatePicker);
+  private DatePickerDialog datePickerDialog;
+
+
+      public void selectDate ()
+    {
+        datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Toast.makeText(MainActivity.this, "Date Selected :"+dayOfMonth+":"+month+":"+year, Toast.LENGTH_SHORT).show();
+            }
+        }, 2018, 8, 27);
+        datePickerDialog.show();
+    }
+
+//get time
+
+Calendar cal = Calendar.getInstance(); 
+
+  int millisecond = cal.get(Calendar.MILLISECOND);
+  int second = cal.get(Calendar.SECOND);
+  int minute = cal.get(Calendar.MINUTE);
+        //12 hour format
+  int hour = cal.get(Calendar.HOUR);
+        //24 hour format
+  int hourofday = cal.get(Calendar.HOUR_OF_DAY);
+
+//get date
+
+  Calendar cal = Calendar.getInstance(); 
+  
+  int dayofyear = cal.get(Calendar.DAY_OF_YEAR);
+  int year = cal.get(Calendar.YEAR);
+  int dayofweek = cal.get(Calendar.DAY_OF_WEEK);
+  int dayofmonth = cal.get(Calendar.DAY_OF_MONTH);
