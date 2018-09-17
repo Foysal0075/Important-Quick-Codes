@@ -13,4 +13,15 @@
         return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.DEFAULT);
     }
 
-     
+ //Android Camera Permission
+
+ 	static final int MY_CAMERA_REQUEST_CODE = 2; 
+    public void getCameraPermission()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (this.checkSelfPermission(Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+            }
+        }
+    }     
