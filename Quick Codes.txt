@@ -91,3 +91,21 @@ Calendar cal = Calendar.getInstance();
             mImageview.setImageBitmap(imageBitmap);
         }
     }
+
+
+//Get Image from gallery
+ public void pickImageFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(intent, GALLERY_REQUEST_CODE);
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+{
+    super.onActivityResult(requestCode, resultCode, data);
+    if (resultCode == RESULT_OK)
+    {
+        Uri imageUri = data.getData();
+        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+    }
+}
